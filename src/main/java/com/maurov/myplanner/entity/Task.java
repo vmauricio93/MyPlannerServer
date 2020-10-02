@@ -1,6 +1,7 @@
 package com.maurov.myplanner.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,8 @@ public class Task {
     private Long id;
     @NotBlank
     private String description;
-    private Date date;
-    private Date time;
+    private LocalDate date;
+    private LocalDateTime time;
     private String place;
     private String tag;
     @NotNull
@@ -40,19 +41,19 @@ public class Task {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
