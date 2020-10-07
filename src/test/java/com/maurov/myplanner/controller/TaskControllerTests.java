@@ -13,7 +13,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class TaskControllerTests {
         taskStub.setDescription("taskStub");
         taskStub.setDone(false);
         taskStub.setDate(LocalDate.now());
-        taskStub.setTime(LocalDateTime.now());
+        taskStub.setTime(OffsetDateTime.now());
         taskStub.setPlace("place");
         taskStub.setTag("tag");
     }

@@ -1,7 +1,8 @@
 package com.maurov.myplanner.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Task {
     @NotBlank
     private String description;
     private LocalDate date;
-    private LocalDateTime time;
+    private OffsetDateTime time;
     private String place;
     private String tag;
     @NotNull
@@ -49,11 +50,11 @@ public class Task {
         this.date = date;
     }
 
-    public LocalDateTime getTime() {
+    public OffsetDateTime getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(OffsetDateTime time) {
         this.time = time;
     }
 
