@@ -14,9 +14,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.maurov.myplanner.repository.TaskRepository;
 import com.maurov.myplanner.entity.Task;
@@ -103,13 +103,15 @@ public class TaskControllerTests {
     @ValueSource(booleans = {false, true})
     public void shouldToggleATaskDone(boolean done) throws Exception {
         Task doneTaskStub = new Task();
-        when(taskRepository.getOne(anyLong())).thenReturn(taskStub);
+        when(taskRepository.findById(anyLong()))
+            .thenReturn(Optional.of(taskStub));
         when(taskRepository.save(any())).thenReturn(doneTaskStub);
         
         doneTaskStub.setDone(done);
         this.mockMvc
             .perform(
                 put(tasksEndpoint + "/{id}", 1L)
+                .param("action", "toggleAsDone")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(

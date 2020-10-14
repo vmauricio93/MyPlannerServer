@@ -1,6 +1,7 @@
 package com.maurov.myplanner.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -44,13 +46,21 @@ public class TaskController {
     }
 
     @PutMapping(tasksEndpoint + "/{id}")
-    public Task toggleTaskAsDone(
+    public Task editTask(
         @PathVariable Long id,
+        @RequestParam("action") Optional<String> action,
         @Valid @RequestBody Task task
     ) {
-        Task toggledTask = this.taskRepository.getOne(id);
-        toggledTask.setDone(!task.getDone());
-        return this.taskRepository.save(toggledTask);
+        Task editedTask = this.taskRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("¡Tarea no encontrada!"));
+        
+        if (action.isPresent() && "toggleAsDone".equals(action.get())) {
+            editedTask.setDone(!task.getDone());
+        } else if (action.isPresent() && "edit".equals(action.get())) {
+            editedTask = task;
+        }
+
+        return this.taskRepository.save(editedTask);
     }
 
 }
