@@ -1,24 +1,21 @@
-package com.maurov.myplanner.entity;
+package com.maurov.myplanner.dto;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-@Entity
-public class Task {
+public class TaskDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank
     private String description;
     private LocalDate date;
     private OffsetDateTime time;
     private String place;
     private String tag;
+    @NotNull
     private Boolean done;
 
     public Long getId() {
@@ -76,5 +73,4 @@ public class Task {
     public void setDone(Boolean done) {
         this.done = done;
     }
-
 }
