@@ -1,2 +1,5 @@
 language: java
 jdk: oraclejdk11
+
+script:
+  - ./mvnw clean install -f "/home/mauro/Mis proyectos/MyPlanner- Server/myplanner/pom.xml" -Pprod
