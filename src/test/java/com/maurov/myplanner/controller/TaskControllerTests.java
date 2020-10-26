@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.maurov.myplanner.repository.TaskRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maurov.myplanner.dto.TaskDTO;
 import com.maurov.myplanner.entity.Task;
 

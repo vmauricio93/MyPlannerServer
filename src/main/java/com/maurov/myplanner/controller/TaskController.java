@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maurov.myplanner.dto.TaskDTO;
 import com.maurov.myplanner.entity.Task;
 import com.maurov.myplanner.repository.TaskRepository;
