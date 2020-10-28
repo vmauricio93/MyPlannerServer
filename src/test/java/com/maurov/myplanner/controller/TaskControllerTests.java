@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.maurov.myplanner.repository.TaskRepository;
+import com.maurov.myplanner.security.ApplicationSecurityConfigurer;
 import com.maurov.myplanner.dto.TaskDTO;
 import com.maurov.myplanner.entity.Task;
 
@@ -32,16 +33,27 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.server.ResponseStatusException;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = TaskController.class)
-public class TaskControllerTests {
+@WebMvcTest(
+    controllers = TaskController.class,
+    excludeFilters = {
+        @ComponentScan.Filter(
+            type = FilterType.ASSIGNABLE_TYPE,
+            value = ApplicationSecurityConfigurer.class
+        )},
+    excludeAutoConfiguration = { SecurityAutoConfiguration.class }
+)
+class TaskControllerTests {
 
     private static String tasksEndpoint;
     private TaskDTO taskDTOStub;
