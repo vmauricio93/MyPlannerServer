@@ -1,0 +1,2 @@
+ALTER TABLE task
+ADD COLUMN user_id INT NOT NULL;
